@@ -62,13 +62,10 @@ const main = () => {
 
   try {
     const abis: ABIEntry[][] = abiFilePaths.map(parseABIFile);
-    const abstractFactoryABI = findCommonFunctions(...abis);
+    const abstractABI = findCommonFunctions(...abis);
 
     // Write the abstractFactoryABI to the specified output file
-    fs.writeFileSync(
-      outputFilePath,
-      JSON.stringify(abstractFactoryABI, null, 2)
-    );
+    fs.writeFileSync(outputFilePath, JSON.stringify(abstractABI, null, 2));
     console.log(`AbstractFactory ABI written to ${outputFilePath}`);
   } catch (error) {
     console.error("Error processing ABI files:", error);
